@@ -1,0 +1,27 @@
+PODS:
+  - Reachability (3.2)
+  - RxCocoa (3.6.1):
+    - RxSwift (~> 3.6)
+  - RxDataSources (1.0.4):
+    - RxCocoa (~> 3.0)
+    - RxSwift (~> 3.0)
+  - RxSwift (3.6.1)
+  - ScrollableGraphView (4.0.4)
+
+DEPENDENCIES:
+  - Reachability (= 3.2.0)
+  - RxCocoa (= 3.6.1)
+  - RxDataSources (= 1.0.4)
+  - RxSwift (= 3.6.1)
+  - ScrollableGraphView (= 4.0.4)
+
+SPEC CHECKSUMS:
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  RxCocoa: 84a08739ab186248c7f31ce4ee92d6f8a947d690
+  RxDataSources: b3389acc5fe2eefb8fcd81a2b76a876ad08bc82a
+  RxSwift: f9de85ea20cd2f7716ee5409fc13523dc638e4e4
+  ScrollableGraphView: 072ea302f4ca27779692656a49d51fe537b2b1e7
+
+PODFILE CHECKSUM: 22cf0a1232ec9b540f98ed0dcde9308864ad83d6
+
+COCOAPODS: 1.2.1
