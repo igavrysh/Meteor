@@ -69,7 +69,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l27-IB-fKy" id="WuO-Zt-uNP">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DEC 1989" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xr9-sJ-mJZ">
@@ -82,20 +82,20 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MAX 12℃" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n7S-Cf-yYh">
-                                                    <rect key="frame" x="267" y="11" width="100" height="21"/>
+                                                    <rect key="frame" x="217" y="3" width="150" height="21.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="100" id="lCj-6w-iiv"/>
+                                                        <constraint firstAttribute="width" constant="150" id="yZN-S0-N00"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MIN -12℃" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E4W-WP-hSe">
-                                                    <rect key="frame" x="167" y="11" width="100" height="21"/>
+                                                    <rect key="frame" x="217" y="19" width="150" height="21.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="100" id="i3z-hx-1ON"/>
+                                                        <constraint firstAttribute="width" constant="150" id="gqw-dy-ut7"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -103,11 +103,11 @@
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="Xr9-sJ-mJZ" firstAttribute="leading" secondItem="WuO-Zt-uNP" secondAttribute="leadingMargin" id="8UO-xR-6c1"/>
-                                                <constraint firstItem="n7S-Cf-yYh" firstAttribute="centerY" secondItem="WuO-Zt-uNP" secondAttribute="centerY" id="B6z-8H-My6"/>
-                                                <constraint firstItem="n7S-Cf-yYh" firstAttribute="trailing" secondItem="WuO-Zt-uNP" secondAttribute="trailingMargin" id="I99-6i-vEf"/>
+                                                <constraint firstAttribute="trailing" secondItem="n7S-Cf-yYh" secondAttribute="trailing" constant="8" id="N6m-4K-JOB"/>
                                                 <constraint firstItem="Xr9-sJ-mJZ" firstAttribute="centerY" secondItem="WuO-Zt-uNP" secondAttribute="centerY" id="RbR-uJ-G4s"/>
-                                                <constraint firstItem="n7S-Cf-yYh" firstAttribute="leading" secondItem="E4W-WP-hSe" secondAttribute="trailing" id="f4S-so-9QA"/>
-                                                <constraint firstItem="E4W-WP-hSe" firstAttribute="centerY" secondItem="WuO-Zt-uNP" secondAttribute="centerY" id="zKh-zT-djx"/>
+                                                <constraint firstAttribute="bottom" secondItem="E4W-WP-hSe" secondAttribute="bottom" constant="3" id="obn-Qx-Yxf"/>
+                                                <constraint firstItem="n7S-Cf-yYh" firstAttribute="top" secondItem="WuO-Zt-uNP" secondAttribute="top" constant="3" id="pAE-a5-hd7"/>
+                                                <constraint firstAttribute="trailing" secondItem="E4W-WP-hSe" secondAttribute="trailing" constant="8" id="r1T-Pk-zuV"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

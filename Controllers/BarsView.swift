@@ -91,8 +91,9 @@ class BarsView: UIView {
         graphView.dataPointSpacing = 80
         graphView.shouldAnimateOnStartup = true
         graphView.shouldAdaptRange = true
-        graphView.shouldRangeAlwaysStartAtZero = true
-        graphView.rangeMax = 211
+        graphView.shouldRangeAlwaysStartAtZero = false
+        graphView.rangeMax = 250
+        graphView.rangeMin = -120
         
         graphView.addReferenceLines(referenceLines: referenceLines)
         

@@ -23,7 +23,7 @@ struct MetofficeService: BarServiceType {
     
     // MARK: - API Addresses
     fileprivate enum Address: String {
-        case bradford = "bradforddata.txt"
+        case bradford = "armaghdata.txt"
         
         private var baseURL: String { return "http://www.metoffice.gov.uk/pub/data/weather/uk/climate/stationdata/" }
         var url: URL {
