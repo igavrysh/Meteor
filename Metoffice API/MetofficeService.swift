@@ -19,7 +19,9 @@ struct MetofficeService: BarServiceType {
               month: -1,
               maxTemperature: nil,
               minTemperature: nil,
-              airFrost: nil, Rainfall: nil, sunshineDuration: nil)
+              airFrost: nil,
+              rainfall: nil,
+              sunshineDuration: nil)
     
     // MARK: - API Addresses
     fileprivate enum Address: String {
@@ -96,7 +98,7 @@ struct MetofficeService: BarServiceType {
                               maxTemperature: Double(barMatches[2]),
                               minTemperature: Double(barMatches[3]),
                               airFrost: Int(barMatches[4]),
-                              Rainfall: Double(barMatches[5]),
+                              rainfall: Double(barMatches[5]),
                               sunshineDuration: Double(barMatches[6]))
                     
                 }

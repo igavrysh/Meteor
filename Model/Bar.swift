@@ -27,7 +27,7 @@ struct Bar  {
     var airFrost: Int?
     
     // total rainfall, mm
-    var Rainfall: Double?
+    var rainfall: Double?
     
     // total sunshine duration, hours
     var sunshineDuration : Double?

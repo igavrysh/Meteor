@@ -13,22 +13,28 @@ class BarTableViewCell: UITableViewCell {
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var minTempLabel: UILabel!
     @IBOutlet var maxTempLabel: UILabel!
+    @IBOutlet var airfrostLabel: UILabel!
+    @IBOutlet var rainfallLabel: UILabel!
+    @IBOutlet var sunshineDurationLabel: UILabel!
     
     func configure(with bar: Bar) {
         self.dateLabel.text = String.monthShortcut(no: bar.month) + " " + String(bar.year)
         
-        self.minTempLabel.text = "MIN: "
-        if let temperature = bar.minTemperature {
-            self.minTempLabel.text =  self.minTempLabel.text! + "\(temperature)℃"
+        self.minTempLabel.text = convertToString(value: bar.minTemperature, prefix: "MIN ", suffix: "℃")
+        self.maxTempLabel.text = convertToString(value: bar.maxTemperature, prefix: "MAX ", suffix: "℃")
+        self.airfrostLabel.text = convertToString(value: bar.airFrost, prefix: "AIRFROST ", suffix: "d")
+        self.rainfallLabel.text = convertToString(value: bar.rainfall, prefix: "RAINFALL ", suffix: "mm")
+        self.sunshineDurationLabel.text = convertToString(value: bar.sunshineDuration, prefix: "Sun.Dur. ", suffix: "h")
+    }
+    
+    private func convertToString<T>(value: T?, prefix: String, suffix: String) -> String {
+        var converted = ""
+        if let value = value {
+            converted = String(describing: value) + suffix
         } else {
-            self.minTempLabel.text =  self.minTempLabel.text! + " N/A"
+            converted = "N/A"
         }
         
-        self.maxTempLabel.text = "MAX: "
-        if let temperature = bar.maxTemperature {
-            self.maxTempLabel.text =  self.maxTempLabel.text! + "\(temperature)℃"
-        } else {
-            self.maxTempLabel.text =  self.maxTempLabel.text! + " N/A"
-        }
+        return prefix + converted
     }
 }
