@@ -46,11 +46,7 @@ struct MetofficeService: BarServiceType {
 
             let cityNamePattern = "^([\\w\\-]+)"
             let cityNameMatches = MetofficeService.matches(for: cityNamePattern, in: barsString)
-            var city = ""
-            if (cityNameMatches.count > 0) {
-                city = cityNameMatches[0]
-            }
-            
+            let city = cityNameMatches.first ?? ""
             
             let decimal = "\\d+"
             let lineStartOrSpacing = "(\\s|^)"

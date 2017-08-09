@@ -23,8 +23,8 @@ class BarTableViewCell: UITableViewCell {
         self.minTempLabel.text = convertToString(value: bar.minTemperature, prefix: "MIN ", suffix: "℃")
         self.maxTempLabel.text = convertToString(value: bar.maxTemperature, prefix: "MAX ", suffix: "℃")
         self.airfrostLabel.text = convertToString(value: bar.airFrost, prefix: "AIRFROST ", suffix: "d")
-        self.rainfallLabel.text = convertToString(value: bar.rainfall, prefix: "RAINFALL ", suffix: "mm")
-        self.sunshineDurationLabel.text = convertToString(value: bar.sunshineDuration, prefix: "Sun.Dur. ", suffix: "h")
+        self.rainfallLabel.text = convertToString(value: bar.rainfall, prefix: "RAIN ", suffix: "mm")
+        self.sunshineDurationLabel.text = convertToString(value: bar.sunshineDuration, prefix: "Sun Duration ", suffix: "h")
     }
     
     private func convertToString<T>(value: T?, prefix: String, suffix: String) -> String {
