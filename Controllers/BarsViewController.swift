@@ -12,7 +12,7 @@ import RxCocoa
 import RxDataSources
 import ScrollableGraphView
 
-class BarsViewController: UIViewController, BindableType, ScrollableGraphViewDataSource {
+class BarsViewController: UIViewController, BindableType {
     
     let disposeBag = DisposeBag()
     
@@ -21,8 +21,6 @@ class BarsViewController: UIViewController, BindableType, ScrollableGraphViewDat
     var barsView: BarsView {
         return self.view as! BarsView
     }
-    
-    private var seriesTuple: SeriesTuple = ([], [:])
     
     let dataSource = RxTableViewSectionedAnimatedDataSource<BarSection>()
     
@@ -40,19 +38,12 @@ class BarsViewController: UIViewController, BindableType, ScrollableGraphViewDat
             .addDisposableTo(self.disposeBag)
         
         self.viewModel.series
-            .do(onNext: { (seriesTuple: SeriesTuple) in
-                for (name, _) in seriesTuple.series {
-                    self.barsView.addDarkLinePlot(identifier: name)
+            .do(onNext: { seriesArray in
+                _ = seriesArray.map { [weak self] series in
+                    self?.barsView.addDarkLinePlot(identifier: series.name)
                 }
             })
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] (seriesTuple: SeriesTuple) in
-                self?.seriesTuple = seriesTuple
-                
-                self?.barsView.graphView.dataSource = self
-                
-                self?.barsView.graphView.reload()
-            })
+            .bind(to: self.barsView.graphView.rx.items)
             .addDisposableTo(self.disposeBag)
     }
     
@@ -64,7 +55,7 @@ class BarsViewController: UIViewController, BindableType, ScrollableGraphViewDat
         self.dataSource.configureCell = { [weak self] dataSource, tableView, indexPath, bar in
             let cell = self?.barsView.tableView.dequeueReusableCell(withIdentifier: "BarTableViewCell", for: indexPath) as! BarTableViewCell
             
-            if let strongSelf = self {
+            if self != nil {
                 cell.configure(with: bar)
             }
             
@@ -72,27 +63,5 @@ class BarsViewController: UIViewController, BindableType, ScrollableGraphViewDat
         }
         
         self.dataSource.canEditRowAtIndexPath = { _ in true }
-    }
-    
-    // MARK: - ScrollableGraphViewDataSource
-    
-    func value(forPlot plot: Plot, atIndex pointIndex: Int) -> Double {
-        guard let points = self.seriesTuple.series[plot.identifier],
-            points.count > pointIndex
-        else {
-            return 0
-        }
-        
-        return points[pointIndex]
-    }
-    
-    func label(atIndex pointIndex: Int) -> String {
-        return self.seriesTuple.labels[pointIndex]
-    }
-    
-    func numberOfPoints() -> Int {
-        return self.seriesTuple.series.reduce(0) { acc, tuple in
-            return acc > tuple.value.count ? acc : tuple.value.count
-        }
     }
 }

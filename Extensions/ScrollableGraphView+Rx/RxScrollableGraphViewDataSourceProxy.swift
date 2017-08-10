@@ -11,9 +11,11 @@ import RxSwift
 import RxCocoa
 import ScrollableGraphView
 
-fileprivate let scrollableGraphViewDataSourceNotSet = ScrollableGraphViewDataSourceNotSet()
+let scrollableGraphViewDataSourceNotSet = ScrollableGraphViewDataSourceNotSet()
 
-final fileprivate class ScrollableGraphViewDataSourceNotSet : NSObject, ScrollableGraphViewDataSource  {
+final class ScrollableGraphViewDataSourceNotSet
+    : NSObject
+    , ScrollableGraphViewDataSource  {
     
     func value(forPlot plot: Plot, atIndex pointIndex: Int) -> Double {
         return 0
@@ -35,7 +37,8 @@ public class RxScrollableGraphViewDataSourceProxy
 {
     /// Typed parent object.
     
-    public weak fileprivate(set) var scrollableGraphView: ScrollableGraphView?
+    public weak private(set) var scrollableGraphView: ScrollableGraphView?
+    
     fileprivate var _requiredMethodsDataSource: ScrollableGraphViewDataSource? = scrollableGraphViewDataSourceNotSet
     
     /// Initializes `RxScrollableGraphViewDataSourceProxy`
@@ -85,7 +88,8 @@ public class RxScrollableGraphViewDataSourceProxy
     /// For more information take a look at `DelegateProxyType`.
     public class func currentDelegateFor(_ object: AnyObject) -> AnyObject? {
         let scrollableGraphView: ScrollableGraphView = castOrFatalError(object)
-        return scrollableGraphView.dataSource as AnyObject
+        
+        return scrollableGraphView.dataSource as AnyObject?
     }
     
     /// For more information take a look at `DelegateProxyType`.

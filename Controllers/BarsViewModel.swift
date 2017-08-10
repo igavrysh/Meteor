@@ -11,9 +11,18 @@ import RxSwift
 import RxDataSources
 
 typealias DataPoint = (date: String, tmin: Double?, tmax: Double?)
-typealias SeriesTuple = (labels: [String], series: SeriesCollection)
 
 typealias BarSection = AnimatableSectionModel<String, Bar>
+
+struct GraphDot {
+    var label: String
+    var value: Double
+}
+
+struct GraphSeries {
+    var name: String
+    var values: [GraphDot]
+}
 
 struct BarsViewModel {
     let sceneCoordinator: SceneCoordinator
@@ -42,19 +51,32 @@ struct BarsViewModel {
         }
     }
     
-    var series: Observable<SeriesTuple> {
+    var series: Observable<[GraphSeries]> {
         return self.barService.bars()
             .map { bars in
                 return bars.filter { $0.maxTemperature != nil && $0.minTemperature != nil }
             }
             .map { bars in
-                return SeriesTuple(
-                    labels: bars.map { String.monthShortcut(no: $0.month) + " " + String($0.year) },
-                    series: [
-                        "tmax": bars.map { $0.maxTemperature ?? 0 },
-                        "tmin": bars.map { $0.minTemperature ?? 0 }
-                    ]
-                )
+                return [
+                    GraphSeries(
+                        name: "tmax",
+                        values: bars.map { bar in
+                            GraphDot(
+                                label: "\(String.monthShortcut(no: bar.month)) \(bar.year)",
+                                value: bar.maxTemperature ?? 0
+                            )
+                        }
+                    ),
+                    GraphSeries(
+                        name: "tmin",
+                        values: bars.map { bar in
+                            GraphDot(
+                                label: "\(String.monthShortcut(no: bar.month)) \(bar.year)",
+                                value: bar.minTemperature ?? 0
+                            )
+                        }
+                    )
+                ]
         }
     }
 }

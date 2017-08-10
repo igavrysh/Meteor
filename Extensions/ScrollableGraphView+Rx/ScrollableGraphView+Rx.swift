@@ -12,16 +12,6 @@ import RxCocoa
 import ScrollableGraphView
 
 extension ScrollableGraphView {
-    
-    /// Factory method that enables subclasses to implement their own `delegate`.
-    ///
-    /// - returns: Instance of delegate proxy that wraps `delegate`.
-    /**
-     public override func createRxDelegateProxy() -> RxScrollViewDelegateProxy {
-     return RxTableViewDelegateProxy(parentObject: self)
-     }
-     */
-    
     /**
      Factory method that enables subclasses to implement their own `rx.dataSource`.
      
@@ -67,27 +57,31 @@ extension Reactive where Base: ScrollableGraphView  {
         -> Disposable
         where O.E == S
     {
-        let adapter = RxScrollableViewSequenceDataSource<S>()
-        return self.items(adapter: adapter)(source)
+        let dataSource = RxScrollableGraphViewReactiveArrayDataSourceSequenceWrapper<S>()
+        
+        return self.items(dataSource: dataSource)(source)
     }
     
-    public func items<O: ObservableType, Adapter:RxScrollableGraphViewDataSourceType & ScrollableGraphViewDataSource & AnyObject>(adapter: Adapter)
+    public func items<
+        DataSource: RxScrollableGraphViewDataSourceType & ScrollableGraphViewDataSource & AnyObject,
+        O: ObservableType>
+        (dataSource: DataSource)
         -> (_ source: O)
-        -> Disposable where O.E == Adapter.Element
+        -> Disposable where DataSource.Element == O.E
         
     {
         return { source in
             let dataSourceSubscription
                 = source.subscribeProxyDataSource(
                     ofObject: self.base,
-                    dataSource: adapter,
+                    dataSource: dataSource,
                     retainDataSource: true,
                     binding: { [weak scrollableGraphView = self.base] (_: RxScrollableGraphViewDataSourceProxy, event) in
                         guard let scrollableGraphView = scrollableGraphView else {
                             return
                         }
                         
-                        adapter.scrollableGraphView(scrollableGraphView, observedEvent: event)
+                        dataSource.scrollableGraphView(scrollableGraphView, observedEvent: event)
                     }
             )
             
